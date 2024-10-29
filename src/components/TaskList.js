@@ -1,7 +1,6 @@
-"use client"; 
-
+"use client"
 import { useState } from 'react';
-import { useTasks, useTasksDispatch } from '@/Component/TasksContext.js';
+import { useTasks, useTasksDispatch } from './TasksContext.js';
 
 export default function TaskList() {
   const tasks = useTasks();
@@ -23,6 +22,7 @@ function Task({ task }) {
   if (isEditing) {
     taskContent = (
       <>
+     
         <input
           value={task.text}
           onChange={e => {
@@ -34,7 +34,7 @@ function Task({ task }) {
               }
             });
           }} />
-        <button className='' onClick={() => setIsEditing(false)}>
+        <button className='w-10 border border-black bg-gray-200 text-sm mr-1' onClick={() => setIsEditing(false)}>
           Save
         </button>
       </>
@@ -43,7 +43,7 @@ function Task({ task }) {
     taskContent = (
       <>
         {task.text}
-        <button onClick={() => setIsEditing(true)}>
+        <button className='w-14 border border-black bg-gray-200 text-sm ml-3' onClick={() => setIsEditing(true)}>
           Edit
         </button>
       </>
@@ -51,7 +51,7 @@ function Task({ task }) {
   }
   return (
     <label>
-      <input
+      <input className='mr-3'
         type="checkbox"
         checked={task.done}
         onChange={e => {
@@ -65,7 +65,7 @@ function Task({ task }) {
         }}
       />
       {taskContent}
-      <button onClick={() => {
+      <button className='w-14 border border-black bg-gray-200 text-sm ml-3 mb-2 ' onClick={() => {
         dispatch({
           type: 'deleted',
           id: task.id
